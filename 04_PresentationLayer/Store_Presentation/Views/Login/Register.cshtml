@@ -1,0 +1,30 @@
+﻿@using Store.ViewModel;
+@model MS_UserInfo_Request
+@{
+    ViewBag.Title = "Sign Up";
+    Layout = null;
+}
+
+@using (Html.BeginForm("Register", "Login", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "sign-up-form" }))
+{
+    @Html.AntiForgeryToken()
+    <h2 class="title">@ViewBag.Title</h2>
+    <div class="input-field">
+        <i class="fas fa-user"></i>
+        @Html.TextBoxFor(u => u.UserName, new { @class = "text", @placeholder = "Username" })
+    </div>
+    <div class="input-field">
+        <i class="fas fa-envelope"></i>
+        @Html.TextBoxFor(u => u.Email, new { @class = "text", @placeholder = "Email" })
+    </div>
+    <div class="input-field">
+        <i class="fas fa-lock"></i>
+        @Html.PasswordFor(u => u.Password, new { @class = "text", @placeholder = "Password" })
+    </div>
+
+    if (ViewBag.Error != null)
+    {
+        <p class="text">@ViewBag.Error</p>
+    }
+    <input type="submit" value="Register" class="btn solid" />
+}
