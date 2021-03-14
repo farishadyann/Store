@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MS_ActivityLog.cs" />
+    <Compile Include="MS_Products.cs" />
     <Compile Include="MS_UserAccount.cs" />
     <Compile Include="MS_UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

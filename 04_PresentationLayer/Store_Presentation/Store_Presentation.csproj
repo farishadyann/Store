@@ -139,6 +139,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\log.svg" />
+    <Content Include="Content\images\NoProductImage.png" />
     <Content Include="Content\images\register.svg" />
     <Content Include="Content\images\UserNoImage.png" />
     <Content Include="Content\Pages\Login\Login.css" />

@@ -12,7 +12,7 @@ namespace Store_Presentation.Controllers
     public class LoginController : Controller
     {
         BL_Login BL = new BL_Login();
-
+        BL_ActivityLog Act = new BL_ActivityLog();
         public ActionResult Index()
         {
             return View();
@@ -28,11 +28,12 @@ namespace Store_Presentation.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(MS_UserAccount_Request req)
         {
+            MS_UserAccount_Response res = new MS_UserAccount_Response();
             try
             {
                 if (ModelState.IsValid)
                 {
-                    MS_UserAccount_Response res = BL.LoginAuthentication(req);
+                    res = BL.LoginAuthentication(req);
 
                     bool Authententication = Convert.ToBoolean(res.Authentication);
                     string ResponseMessage = res.ResponseMessage.ToString();
@@ -40,12 +41,13 @@ namespace Store_Presentation.Controllers
                     if (Authententication)
                     {
                         Session["UserName"] = res.UserName.ToString();
+                        Session["UserID"] = res.UserID_PK.ToString();
                         ViewBag.ReturnUrl = Url.Action("Index", "Home");
                         return RedirectToAction("Index", "Home");
                     }
                     else
                     {
-                        ViewBag.Error = ResponseMessage;
+                        ViewBag.ErrorLog = ResponseMessage;
                         return View("Index");
                     }
                 }
@@ -53,7 +55,15 @@ namespace Store_Presentation.Controllers
             }
             catch(Exception ex)
             {
-                throw ex;
+                MS_ActivityLog param = new MS_ActivityLog
+                {
+                    ActionName = ControllerContext.RouteData.Values["action"].ToString(),
+                    UserID_FK = res.UserID_PK.HasValue ? res.UserID_PK : 0,
+                    ControllerName = ControllerContext.RouteData.Values["controller"].ToString(),
+                    Description = ex.Message.ToString(),
+                    ActivityDate = DateTime.Now
+                };
+                bool RetVal = Act.ActivityLog(param);
             }
 
             return View();
@@ -93,7 +103,15 @@ namespace Store_Presentation.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                MS_ActivityLog param = new MS_ActivityLog
+                {
+                    ActionName = ControllerContext.RouteData.Values["action"].ToString(),
+                    UserID_FK = 0,
+                    ControllerName = ControllerContext.RouteData.Values["controller"].ToString(),
+                    Description = ex.Message.ToString(),
+                    ActivityDate = DateTime.Now
+                };
+                bool RetVal = Act.ActivityLog(param);
             }
 
             return View();
@@ -102,7 +120,7 @@ namespace Store_Presentation.Controllers
         public ActionResult Logout()
         {
             Session.Clear();//remove session
-            return RedirectToAction("Login");
+            return RedirectToAction("Index");
         }
 
     }

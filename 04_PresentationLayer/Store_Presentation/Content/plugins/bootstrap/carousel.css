@@ -27,6 +27,14 @@
         height: 32rem;
     }
 
+    .card-text{
+        height:70px;
+    }
+
+    .card-img-top{
+        height:400px;
+    }
+
 
 /* MARKETING CONTENT
 -------------------------------------------------- */

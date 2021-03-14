@@ -18,9 +18,9 @@
         @Html.PasswordFor(u => u.Password, new { @class = "text", @placeholder = "Password" })
     </div>
     
-        if (ViewBag.Error != null)
+        if (ViewBag.ErrorLog != null)
         {
-            <p class="text">@ViewBag.Error</p>
+            <p class="text">@ViewBag.ErrorLog</p>
         }
     <input type="submit" value="Login" class="btn solid" />
 }
