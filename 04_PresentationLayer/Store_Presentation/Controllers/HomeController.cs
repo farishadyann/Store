@@ -16,7 +16,7 @@ namespace Store_Presentation.Controllers
         public ActionResult Index()
         {
             
-            if (Session["User"] == null)
+            if (Session["UserName"] == null)
             {
                 return RedirectToAction("Index", "Login");
             }
@@ -59,6 +59,11 @@ namespace Store_Presentation.Controllers
 
             }
             return RetVal;
+        }
+
+        public ActionResult btnOpenDetail(MS_Product_Request req)
+        {
+            return RedirectToAction("Product", "ProductDetail",req);
         }
     }
 }

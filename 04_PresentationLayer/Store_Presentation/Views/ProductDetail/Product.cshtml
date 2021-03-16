@@ -1,0 +1,71 @@
+﻿@using Store.ViewModel;
+
+@{
+    ViewBag.Title = "";
+    MS_Product_Response Product = (ViewBag.VProduct != null) ? (MS_Product_Response)ViewBag.VProduct : new MS_Product_Response();
+
+
+}
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="container-fluid">
+            <div class="flex-wrap row">
+                <div class="col-md-6">
+                    <img class="bd-placeholder-img" style="width: 100%" src="~/Content/images/NoProductImage.png" />
+                </div>
+                <div class="col-md-6">
+                    <h3 class="card-title">@Product.ProductName</h3>
+                    <p class="card-text">@Product.Description</p>
+                    <h4 class="title-price">Price : <span>@string.Format("{0:c}", Product.Price)</span></h4>
+                    <div class="input-group">
+                        <button class="btn-group">-</button>
+                        <input type="text" value="0" />
+                        <button class="btn-group">+</button>
+                        <span>Stock is @Product.Stock</span>
+                    </div>
+                    <br />
+                    <div>
+                        <button class="btn btn-primary">Add To Chart</button>
+                        <button class="btn btn-secondary">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="container mt-5">
+        <div class="col col-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <img class="bd-placeholder-img" style="width: 100%" src="~/Content/images/NoProductImage.png" />
+                        </div>
+                        <div class="col-6">
+                            <h2 class="card-title">@Product.ProductName</h2>
+                            <p class="card-text">@Product.Description</p>
+                            <p class="card-text">@Product.Price</p>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                            <div class="col-1">
+                                <label>Quantity</label>
+                            </div>
+                            <div class="col-4">
+                                <input class="form-control" type="number" />
+                            </div>
+
+                        <div class="col-6">
+
+                                <button class="btn-sm btn-outline-warning float-right">Buy Now</button>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>*@

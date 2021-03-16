@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,11 +18,18 @@ namespace Store.DataAccess
         public List<MS_Product_Response> GetProduct(MS_Product_Request req)
         {
             List<MS_Product_Response> RetVal = new List<MS_Product_Response>();
+            
             try
             {
-                DataTable dt = DBtran.DbToDataTable("[dbo].[USP_GET_PRODUCT]", null, true);
+                DataTable dt = DBtran.DbToDataTable("[dbo].[USP_GET_PRODUCT]", new
+                {
+                    pProductID= req.ProductID_PK == null ? 0 : req.ProductID_PK,
+                    pSellerID = req.SellerID_FK == null ? 0 : req.SellerID_FK,
+                    pCategoryID = req.CategoryID_FK == null ? 0 : req.CategoryID_FK,
+                    pIsActive = req.IsActive == null ? true : req.IsActive
+                }, true);
 
-                foreach(DataRow row in dt.Rows)
+                foreach (DataRow row in dt.Rows)
                 {
                     RetVal.Add(new MS_Product_Response
                     {
