@@ -46,6 +46,7 @@
     <Compile Include="MS_UserAccount.cs" />
     <Compile Include="MS_UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TR_Cart.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

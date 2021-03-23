@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Home Page";
     List<MS_Product_Response> Products = (ViewBag.VProducts != null) ? (List<MS_Product_Response>)ViewBag.VProducts : new List<MS_Product_Response>();
-    
+
 
 }
     
@@ -86,9 +86,22 @@
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <button type="button" class="btn btn-sm btn-outline-info">Add To Chart</button>
-                                    
-                                    @Html.ActionLink("Open Detail","btnOpenDetail",new { ProductID_PK = prod.ProductID_PK}, new { @class = "btn btn-sm btn-outline-warning float-end"})
+                                    <button id="btnAddToCart" type="button" class="btn btn-sm btn-outline-info"
+                                            data-dProductID= @prod.ProductID_PK 
+                                            data-dUserID="@Convert.ToInt32(Session["UserID"])"
+                                            data-dUserName="@Session["UserName"].ToString()"
+                                            data-dUrl="@Url.Action("AddToCart","Cart")"
+                                            onclick="AddToCart(this)">Add To Chart</button>
+                                    @Html.ActionLink("Add To Cart", "AddToCart", "Cart", new
+                                        {
+                                            UserID_FK = Convert.ToInt32(Session["UserID"]),
+                                            ProductID_FK = prod.ProductID_PK,
+                                            Quantity = 1,
+                                            CreatedBy = Session["UserName"].ToString()
+                                        },
+                                        new { @class = "btn btn-sm btn-outline-info" });
+                                            
+                                        @Html.ActionLink("Open Detail", "btnOpenDetail", new { ProductID_PK = prod.ProductID_PK }, new { @class = "btn btn-sm btn-outline-warning float-end" })
                                     @*<button type="button" class="btn btn-sm btn-outline-warning float-end">Open Detail</button>*@
 
                                 </div>

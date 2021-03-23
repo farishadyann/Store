@@ -126,6 +126,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductDetailController.cs" />
@@ -145,15 +147,20 @@
     <Content Include="Content\images\UserNoImage.png" />
     <Content Include="Content\Pages\Login\Login.css" />
     <Content Include="Content\Pages\ProductDetail\Product.css" />
+    <Content Include="Content\plugins\bootstrap-icons\bootstrap-icons.css" />
     <Content Include="Content\plugins\bootstrap\bootstrap.min.css" />
     <Content Include="Content\plugins\bootstrap\carousel.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\Pages\Cart\Cart.js" />
     <Content Include="Scripts\Pages\ProductDetail\Product.js" />
     <Content Include="Scripts\plugins\bootstrap\bootstrap.bundle.min.js.map" />
     <Content Include="Content\plugins\bootstrap\bootstrap.min.css.map" />
+    <Content Include="Content\plugins\bootstrap-icons\bootstrap-icons.json" />
+    <Content Include="Content\plugins\bootstrap-icons\fonts\bootstrap-icons.woff" />
+    <Content Include="Content\plugins\bootstrap-icons\fonts\bootstrap-icons.woff2" />
     <None Include="Scripts\plugins\jquery\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\plugins\bootstrap\bootstrap.bundle.min.js" />
     <Content Include="Scripts\plugins\jquery\jquery-3.4.1.js" />
@@ -184,6 +191,8 @@
     <Content Include="Scripts\Pages\Login\kit.fontawesome.js" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\ProductDetail\Product.cshtml" />
+    <Content Include="Views\Checkout\Checkout.cshtml" />
+    <Content Include="Views\Cart\Cart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
