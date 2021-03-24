@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BL_ActivityLog.cs" />
+    <Compile Include="BL_Cart.cs" />
     <Compile Include="BL_Login.cs" />
     <Compile Include="BL_Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

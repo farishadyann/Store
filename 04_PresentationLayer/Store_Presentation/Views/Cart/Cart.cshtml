@@ -1,61 +1,56 @@
-﻿<div class="container py-5">
+﻿@using Store.ViewModel;
+
+@{ 
+    ViewBag.Title = "Cart";
+    List<TR_Cart_Response> Cart = (ViewBag.VCart != null) ? (List<TR_Cart_Response>)ViewBag.VCart : new List<TR_Cart_Response>();
+
+}
+
+<div class="container py-5">
     <div class="col">
-        <div class="card shadow-sm mb-3">
-            <table class="table table-borderless align-middle text-center" width="100%">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Photo</th>
-                        <th>Product Name</th>
-                        <th>Product Price</th>
-                        <th>Quantity</th>
-                        <th>Total Price</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><input type="checkbox" /></td>
-                        <td>
-                            <img style="height:200px; width:200px" role="img" src="~/Content/images/NoProductImage.png" />
-                        </td>
-                        <td>Minyak Kayu putih</td>
-                        <td>5000</td>
-                        <td><input type="number" /></td>
-                        <td>10000</td>
-                        <td><button class="btn btn-danger"><span class="bi-trash"></span></button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="card shadow-sm mb-3">
-            <table class="table table-borderless align-middle text-center" width="100%">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Photo</th>
-                        <th>Product Name</th>
-                        <th>Product Price</th>
-                        <th>Quantity</th>
-                        <th>Total Price</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><input type="checkbox" /></td>
-                        <td>
-                            <img style="height:200px; width:200px" role="img" src="~/Content/images/NoProductImage.png" />
-                        </td>
-                        <td>Minyak Kayu putih</td>
-                        <td>5000</td>
-                        <td><input type="number" /></td>
-                        <td>10000</td>
-                        <td><button class="btn btn-danger"><span class="bi-trash"></span></button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        @foreach (var item in Cart)
+        {
+            int total = 0;
+            total = Convert.ToInt32(item.Price) * Convert.ToInt32(item.Quantity);
+            
+            <div class="card shadow-sm mb-3">
+                <table class="table table-borderless align-middle text-center" width="100%">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Photo</th>
+                            <th>Product Name</th>
+                            <th>Product Price</th>
+                            <th>Quantity</th>
+                            <th>Total Price</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input data-CartID="@item.CartID_PK" type="checkbox" /></td>
+                            <td>
+                                @if (item.ProductImage == null)
+                                {
+                                    <img style="height:200px; width:200px" role="img" src="~/Content/images/NoProductImage.png" />
+                                }
+                                else
+                                {
+                                    <img style="height:200px; width:200px" role="img" src="~/Content/images/NoProductImage.png" />
+                                }
+                            </td>
+                            <td>@item.ProductName</td>
+                            <td>@string.Format("{0:c}", item.Price)</td>
+                            <td><input type="number" value="@item.Quantity"/></td>
+                            <td>@string.Format("{0:c}", total)<td>
+                            <td>
+                            <button class="btn btn-danger" data-CartID="@item.CartID_PK" data-UserName="@item.UserName" data-url="@Url.Action("DeleteCart","Cart")" onclick="DeleteCart(this)"><span class="bi-trash"></span></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        }
     </div>
 </div>
 
