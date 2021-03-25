@@ -10,7 +10,7 @@ namespace Store_Presentation.Controllers
     public class CheckoutController : Controller
     {
         // GET: Checkout
-        public ActionResult Checkout(MS_Product_Item req)
+        public ActionResult Checkout()
         {
             if (Session["UserName"] == null)
             {

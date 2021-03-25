@@ -38,6 +38,8 @@ namespace Store.DataAccess
                         UserID_FK = string.IsNullOrEmpty(row["UserID_FK"].ToString()) ? 0 : Convert.ToInt32(row["UserID_FK"]),
                         UserName = string.IsNullOrEmpty(row["UserName"].ToString()) ? "" : row["UserName"].ToString(),
                         ProductID_FK = string.IsNullOrEmpty(row["ProductID_FK"].ToString()) ? 0 : Convert.ToInt32(row["ProductID_FK"]),
+                        SellerID_FK = string.IsNullOrEmpty(row["SellerID_FK"].ToString()) ? 0 : Convert.ToInt32(row["SellerID_FK"]),
+                        SellerName = string.IsNullOrEmpty(row["SellerName"].ToString()) ? "" : row["SellerName"].ToString(),
                         ProductName = string.IsNullOrEmpty(row["ProductName"].ToString()) ? "" : row["ProductName"].ToString(),
                         ProductImage = string.IsNullOrEmpty(row["ProductImage"].ToString()) ? "" : row["ProductImage"].ToString(),
                         Price = string.IsNullOrEmpty(row["Price"].ToString()) ? 0 : Convert.ToInt32(row["Price"]),
@@ -71,7 +73,6 @@ namespace Store.DataAccess
                 //param
                 //Parameter.Add(new SqlParameter() { ParameterName = "@pPostType", SqlDbType = SqlDbType.VarChar, Value = req.PostType.ToString() ?? "" });
                 Parameter.Add(new SqlParameter() { ParameterName = "@pPostType", SqlDbType = SqlDbType.VarChar, Value = param.PostType ?? "" });
-                
                 Parameter.Add(new SqlParameter() { ParameterName = "@pCartID", SqlDbType = SqlDbType.VarChar, Value = param.CartID_PK.HasValue ? param.CartID_PK : 0 });
                 Parameter.Add(new SqlParameter() { ParameterName = "@pUserID", SqlDbType = SqlDbType.Int, Value = param.UserID_FK.HasValue ? param.UserID_FK : 0 });
                 Parameter.Add(new SqlParameter() { ParameterName = "@pProductID", SqlDbType = SqlDbType.Int, Value = param.ProductID_FK.HasValue ? param.ProductID_FK : 0 });

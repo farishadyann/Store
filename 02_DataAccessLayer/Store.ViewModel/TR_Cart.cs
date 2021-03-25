@@ -24,6 +24,8 @@ namespace Store.ViewModel
         public int? UserID_FK { get; set; }
         public string UserName { get; set; }
         public int? ProductID_FK { get; set; }
+        public int? SellerID_FK { get; set; }
+        public string SellerName { get; set; }
         public string ProductName { get; set; }
         public string ProductImage { get; set; }
         public int? Stock { get; set; }
