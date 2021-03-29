@@ -8,20 +8,20 @@
 
 <div class="container py-5">
     <div class="col">
-
-        @if (Cart == null)
-        {
-            <div class="card shadow-sm py-5">
-                <h2 class="card-title">No item in Cart</h2>
-            </div>
-        }
-        else
-        {
-            foreach (var item in Cart)
+        <form method="post" name="ItemCart" action="@Url.Action("Checkout","Checkout")">
+            @if (Cart == null)
             {
-                int total = 0;
-                total = Convert.ToInt32(item.Price) * Convert.ToInt32(item.Quantity);
-                <form method="post" name="ItemCart">
+                <div class="card shadow-sm py-5">
+                    <h2 class="card-title">No item in Cart</h2>
+                </div>
+            }
+            else
+            {
+                foreach (var item in Cart)
+                {
+                    int total = 0;
+                    total = Convert.ToInt32(item.Price) * Convert.ToInt32(item.Quantity);
+
                     <div class="card shadow-sm mb-3">
                         <table class="table table-borderless align-middle text-center" width="100%">
                             <thead>
@@ -54,7 +54,7 @@
                                     <td>@string.Format("{0:c}", item.Price)</td>
                                     <td><input type="number" max="@item.Stock" min="0" data-CartID="@item.CartID_PK" data-UserName="@item.UserName" data-url="@Url.Action("UpdateCart", "Cart")" data-Price="@item.Price" onchange="AddQuantity(this)" value="@item.Quantity" /></td>
                                     <td>
-                                        <input type="text" name="TotalPrice" disabled value="@string.Format("{0:c}", total)"/>
+                                        <input type="text" name="TotalPrice" disabled value="@string.Format("{0:c}", total)" />
                                     <td>
                                     <td>
                                         <button class="btn btn-danger" data-CartID="@item.CartID_PK" data-UserName="@item.UserName" data-url="@Url.Action("DeleteCart", "Cart")" onclick="DeleteCart(this)"><span class="bi-trash"></span></button>
@@ -63,15 +63,16 @@
                             </tbody>
                         </table>
                     </div>
-                </form>
-            }
-        }
 
-        <div class="container">
-            <label id="lblTotalPayment" class="form-control"></label>
-            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Checkout","Checkout")'"><span class="bi-wallet">Check Out</span></button>
+
+                }
+            }
+        </form>
+            <div class="container">
+                <label id="lblTotalPayment" class="form-control"></label>
+                <button type="submit" class="btn btn-primary" data-url="@Url.Action("GetDataCart","Checkout")" onclick="ProceedCheckOut(this)"><span class="bi-wallet">Check Out</span></button>
+            </div>
         </div>
-    </div>
 </div>
 
 

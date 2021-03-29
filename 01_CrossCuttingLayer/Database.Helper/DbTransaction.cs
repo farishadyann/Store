@@ -91,32 +91,6 @@ namespace Database.Helper
 
         #region DbExecute
         
-        //public void DbExecute(string Query, bool IsStorageProcedure)
-        //{
-        //    using (var sqlConnection = new SqlConnection(SqlConnectionString))
-        //    {
-        //        if (sqlConnection.State != ConnectionState.Open)
-        //            sqlConnection.Open();
-
-        //        if (!IsStorageProcedure)
-        //            sqlConnection.Execute(Query);
-        //        else
-        //            sqlConnection.Execute(Query, commandType: CommandType.StoredProcedure);
-        //    }
-        //}
-        //public void DbExecute(string Query, object Parameter, bool IsStorageProcedure)
-        //{
-        //    using (var sqlConnection = new SqlConnection(SqlConnectionString))
-        //    {
-        //        if (sqlConnection.State != ConnectionState.Open)
-        //            sqlConnection.Open();
-
-        //        if (!IsStorageProcedure)
-        //            sqlConnection.Execute(Query, Parameter);
-        //        else
-        //            sqlConnection.Execute(Query, Parameter, commandType: CommandType.StoredProcedure);
-        //    }
-        //}
         public void DbExecute(string Query, List<SqlParameter> Parameter, bool IsStorageProcedure, out SqlParameterCollection outParam)
         {
             using (var sqlConnection = new SqlConnection(SqlConnectionString))

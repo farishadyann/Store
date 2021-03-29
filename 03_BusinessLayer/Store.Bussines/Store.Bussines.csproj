@@ -49,6 +49,7 @@
     <Compile Include="BL_Cart.cs" />
     <Compile Include="BL_Login.cs" />
     <Compile Include="BL_Product.cs" />
+    <Compile Include="BL_Checkout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="DAL_ActivityLog.cs" />
     <Compile Include="DAL_Cart.cs" />
+    <Compile Include="DAL_Checkout.cs" />
     <Compile Include="DAL_Login.cs" />
     <Compile Include="DAL_Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

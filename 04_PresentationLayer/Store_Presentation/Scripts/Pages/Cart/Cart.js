@@ -1,4 +1,31 @@
 ﻿$(document).ready(function () {
+
+    $('form[name="ItemCart"]').submit(function (e) {
+        e.preventDefault();
+        var pData = [];
+
+        var Url = $('button[type="submit"]')[0].getAttribute("data-url");
+        var Items = $('form[name="ItemCart"]').find('input[name="CheckCart"]:checked')
+        for (var i = 0; i < Items.length; i++) {
+            var pItems = new Object;
+            pItems.CartID_PK = Items[i].getAttribute("data-cartid");
+            pData.push(pItems);
+        }
+
+        $.post({
+            type: "POST",
+            url: Url,
+            data: {
+                data: pData
+            },
+            success: function (data) {
+                location.href = data;
+            },
+            error: function (err) {
+                console.log("There was an error: " + JSON.stringify(err));
+            }
+        })
+    });
     
     $.ajax({
         type: "POST",
@@ -73,8 +100,6 @@ function AddQuantity(d) {
         TotalPayment = TotalPayment + NewTotal;
         $('#lblTotalPayment').text(TotalPayment);
     }
-    
-
 
     $.ajax({
         type: "POST",
@@ -115,3 +140,31 @@ function AddTotalPayment() {
         $('#lblTotalPayment').text("");
     }
 }
+
+function ProceedCheckOut(d) {
+    $('form[name="ItemCart"]').submit();
+    //var pData = [];
+    
+    //var Url = d.getAttribute("data-url");
+    //var Items = $('form[name="ItemCart"]').find('input[name="CheckCart"]:checked')
+    //for (var i = 0; i < Items.length; i++) {
+    //    var pItems = new Object;
+    //    pItems.CartID_PK = Items[i].getAttribute("data-cartid");
+    //    pData.push(pItems);
+    //}
+    //$.post({
+    //    type: "POST",
+    //    url: Url,
+    //    data: {
+    //        data: pData
+    //    },
+    //    success: function () {
+            
+
+    //    },
+    //    error: function (err) {
+    //        console.log("There was an error: " + JSON.stringify(err));
+    //    }
+    //})
+}
+
